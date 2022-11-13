@@ -1,12 +1,8 @@
 import clipboardy from 'clipboardy';
+import os from 'os';
 import request from 'request';
-var hostname = "";
-try {
-    var os = require("os");
-    hostname = os.hostname();
-} catch (error) {
-    // console.log(error);
-}
+const hostname = os.hostname();
+
 async function main() {
     var prevData = "";
     setInterval(async () => {
